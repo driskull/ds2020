@@ -1,0 +1,49 @@
+## Outline
+
+- The ArcGIS JavaScript API provides ready to use widgets to help build your apps.
+  - Widgets SDK
+    - Internationalization
+    - Accessibility
+  - Foundation to customize these widgets with little code
+    - Configuring (Popup actions SDK https://developers.arcgis.com/javascript/latest/sample-code/popup-actions/index.html)
+    - Theming
+  - Nice looking demo highlighting OOB widgets
+    - Swipe using infinite scroll
+    - Slider for time adjustment
+    - Button to open FeatureTable displaying data on features
+    - Data can be tornadoes/fire
+  - Open source on GitHub from SDK
+    - Widget view for advanced customization
+    - SCSS styles
+
+## Script
+
+- The ArcGIS JavaScript API provides ready to use widgets to help you build your apps.
+- These widgets are accessible for users with disabilities and they text strings used are internationalized into over 30 languages
+- When developing the widgets, we focused on allowing API users to customize and configure the widgets to fit their apps needs.
+- With very little code, a user can configure a widget to do what they need or customize the look and feel to match their brand or map.
+- Lets look at an app using a few of our widgets.
+- This application uses the Swipe widget setup to work as an infinite scroll and change the layer while a user scrolls.
+- It's also using a slider widget to control the time data displayed in the maps view.
+- I'm using a button which i've positeiond in the top right corner to toggle the upcoming FeatureTable widget which displays information about features displayed within the map.
+...
+- Lastly, I'd like to show you how you can further customize widgets.
+- Our widgets presentation view as well as styles are available for download on our SDK.
+- Our SDK links out to the source code available on GitHub.
+- We hope these widgets will save you lots of development time building your mapping applications.
+- Thank you!
+
+## Key messages
+
+- API provides ready to use widgets to help build your apps
+  - Foundation to customize widgets with little code
+  - Open source
+  - New widgets since 4.12
+  - i18n
+  - accessibility
+- Focus on...
+  - examples with little code
+  - customization
+  - localization
+  - src code on GitHub by clicking API link
+  - resources theming Sass
