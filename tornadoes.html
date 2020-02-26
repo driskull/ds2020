@@ -34,7 +34,7 @@
       .scroller {
         position: absolute;
         overflow-y: scroll;
-        width: 400px;
+        width: 350px;
         background-color: rgba(255, 255, 255, 0.7);
         height: 100%;
         right: 0;
@@ -66,17 +66,26 @@
       .legend {
         background-color: transparent;
         width: 100%;
-        visibility: hidden; /* set visibility after map initialization */
+        visibility: hidden;
+        /* set visibility after map initialization */
       }
 
       #sliderDiv {
+        box-sizing: border-box;
         z-index: 2;
         position: absolute;
-        height: 32px;
+        padding: 40px 60px;
         width: 60%;
         margin: 0 20%;
-        background-color: transparent;
-        bottom: 50px;
+        bottom: 36px;
+        background-color: rgba(255, 255, 255, 0.7);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      .slider-heading {
+        text-align: center;
+        margin: 0 0 30px 0;
+        padding: 0;
       }
     </style>
 
@@ -110,7 +119,7 @@
               // zoom: 5, // todo: find this later
               // center: [-102, 23],
               padding: {
-                right: 400
+                right: 350
               }
             });
 
@@ -121,21 +130,44 @@
 
             const featureTableToggle = document.createElement("div");
             featureTableToggle.tabIndex = 0;
-            featureTableToggle.addEventListener("click", () => {
+            featureTableToggle.addEventListener("click", function() {
               console.log("toggle");
             });
             featureTableToggle.className =
               "esri-widget--button esri-icon-table";
             view.ui.add(featureTableToggle, "top-left");
 
-            const sliderWidget = new Slider({
-              min: 1,
-              max: 12,
-              values: [1],
-              steps: 4
+            const sliderDiv = document.createElement("div");
+            const sliderHeading = document.createElement("h2");
+            sliderHeading.className = "slider-heading";
+            sliderHeading.textContent = "Season";
+            sliderDiv.appendChild(sliderHeading);
+            sliderDiv.id = "sliderDiv";
+            const seasons = ["Winter", "Spring", "Summer", "Fall"];
+            const slider = new Slider({
+              container: document.createElement("div"),
+              min: 0,
+              max: 3,
+              values: [0],
+              steps: 1,
+              labelsVisible: true,
+              visibleElements: {
+                labels: true,
+                rangeLabels: true
+              }
             });
-            view.ui.add(sliderWidget, "manual");
-            sliderWidget.container.id = "sliderDiv";
+            slider.tickConfigs = [
+              {
+                mode: "count",
+                values: 4
+              }
+            ];
+            slider.labelFormatFunction = function(value, type) {
+              return seasons[value];
+            };
+
+            sliderDiv.appendChild(slider.container);
+            view.ui.add(sliderDiv, "manual");
 
             // get the layers from the webmap
             const layers = map.layers;
@@ -156,12 +188,20 @@
             });
 
             // create a legend for each layer and add it to the map
-            layers.forEach(function(layer) {
+            layers.forEach(function(layer, index) {
               const slide = document.createElement("div");
               slide.className = "slide";
+              const layerExpression = layer.definitionExpression;
+
+              layer.definitionExpression = `${layerExpression} AND season='${seasons[0]}'`;
+
+              slider.watch("values", function(values) {
+                const value = values[0];
+                layer.definitionExpression = `${layerExpression} AND season='${seasons[value]}'`;
+              });
 
               const heading = document.createElement("h2");
-              heading.className = "";
+              heading.className = "heading";
               heading.textContent = layer.title;
               slide.appendChild(heading);
 
@@ -250,7 +290,7 @@
               event.stopImmediatePropagation();
             });
 
-            scroller.addEventListener("scroll", function(event) {
+            scroller.addEventListener("scroll", function() {
               setScroll(scroller.scrollTop);
             });
           })
@@ -260,6 +300,7 @@
       });
     </script>
   </head>
+
   <body>
     <div id="viewDiv"></div>
     <div class="scroller">
