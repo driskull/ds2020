@@ -34,7 +34,7 @@
       .scroller {
         position: absolute;
         overflow-y: scroll;
-        width: 350px;
+        width: 400px;
         background-color: rgba(255, 255, 255, 0.7);
         height: 100%;
         right: 0;
@@ -71,14 +71,6 @@
       .legend .esri-legend__service-label {
         display: none;
       }
-
-      #timeSliderDiv {
-        z-index: 2;
-        position: absolute;
-        margin: 0 5%;
-        min-width: 375px;
-        bottom: 50px;
-      }
     </style>
 
     <script>
@@ -86,9 +78,8 @@
         "esri/WebMap",
         "esri/views/MapView",
         "esri/widgets/Swipe",
-        "esri/widgets/Legend",
-        "esri/widgets/TimeSlider"
-      ], function(WebMap, MapView, Swipe, Legend, TimeSlider) {
+        "esri/widgets/Legend"
+      ], function(WebMap, MapView, Swipe, Legend) {
         let view, swipes;
 
         const scroller = document.querySelector(".scroller");
@@ -97,7 +88,7 @@
         // initialize the map
         const map = new WebMap({
           portalItem: {
-            id: "856a38ecfd384d1dbe3ea554428ba5ab"
+            id: "105fee001d244d33b90bf3ae5a243679"
           }
         });
 
@@ -111,7 +102,7 @@
               // zoom: 5,
               // center: [-102, 23],
               padding: {
-                right: 350
+                right: 400
               }
             });
 
@@ -119,32 +110,6 @@
               scroller.scrollTop = scroller.scrollTop + event.deltaY;
               event.stopPropagation();
             });
-
-            const featureTableToggle = document.createElement("div");
-            featureTableToggle.tabIndex = 0;
-            featureTableToggle.addEventListener("click", () => {
-              console.log("toggle");
-            });
-            featureTableToggle.className =
-              "esri-widget--button esri-icon-table";
-            view.ui.add(featureTableToggle, "top-left");
-
-            // // create a new instance of timeslider
-            // timeSlider = new TimeSlider({
-            //   container: "timeSliderDiv",
-            //   view: view,
-            //   fullTimeExtent: {
-            //     start: new Date(2018, 0, 1),
-            //     end: new Date(2018, 11, 31)
-            //   },
-            //   playRate: 2000,
-            //   stops: {
-            //     interval: {
-            //       value: 1,
-            //       unit: "months"
-            //     }
-            //   }
-            // });
 
             // get the layers from the webmap
             const layers = map.layers;
@@ -264,7 +229,6 @@
   </head>
   <body>
     <div id="viewDiv"></div>
-    <div id="timeSliderDiv"></div>
     <div class="scroller">
       <div class="content"></div>
     </div>
