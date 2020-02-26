@@ -19,7 +19,7 @@
 ## Script
 
 - The ArcGIS JavaScript API provides ready to use widgets to help you build your apps.
-- These widgets are accessible for users with disabilities and they text strings used are internationalized into over 30 languages
+- These widgets are accessible to users with disabilities and they text strings used are internationalized into over 30 languages
 - When developing the widgets, we focused on allowing API users to customize and configure the widgets to fit their apps needs.
 - With very little code, a user can configure a widget to do what they need or customize the look and feel to match their brand or map.
 - Lets look at an app using a few of our widgets.

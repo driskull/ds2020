@@ -69,3 +69,7 @@ every click in your demo is purpose-driven - to support those key messages in so
 Thinking about demo...
 
 Tornado demo could have a swipe/time capability and show a FeatureTable to show additional information about the data.
+
+
+Run through demo 24 times at least.
+- Have paper with keywords on it.

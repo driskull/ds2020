@@ -82,7 +82,7 @@
         // initialize the map
         const map = new WebMap({
           portalItem: {
-            id: "856a38ecfd384d1dbe3ea554428ba5ab"
+            id: "45725ba7d9fb47a0925398919b13d1fa"
           }
         });
 
@@ -92,9 +92,9 @@
             // create the view
             view = new MapView({
               container: "viewDiv",
-              map: map
-              // zoom: 5,
-              // center: [-102, 23]
+              map: map,
+              zoom: 5,
+              center: [-102, 23]
             });
 
             // get the layers from the webmap
@@ -113,6 +113,26 @@
                   divider: true
                 }
               });
+            });
+
+            // create a legend for each layer and add it to the map
+            layers.forEach(function(layer) {
+              const slide = document.createElement("div");
+              slide.className = "slide";
+              const legendDiv = document.createElement("div");
+              legendDiv.className = "legend";
+              const legend = new Legend({
+                container: legendDiv,
+                view: view,
+                style: "card",
+                layerInfos: [
+                  {
+                    layer: layer
+                  }
+                ]
+              });
+              slide.appendChild(legendDiv);
+              content.appendChild(slide);
             });
 
             return view.when();
@@ -172,6 +192,12 @@
 
             view.watch("height", updateSize);
             updateSize();
+
+            // show layer legends after map has loaded
+            const legendDivs = document.getElementsByClassName("legend");
+            for (let i = 0; i < legendDivs.length; i++) {
+              legendDivs[i].style.visibility = "visible";
+            }
 
             // stop default scroll
             scroller.addEventListener("wheel", function(event) {
