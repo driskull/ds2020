@@ -59,7 +59,7 @@
 
         display: flex;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: center;
         justify-content: flex-start;
       }
 
@@ -68,8 +68,15 @@
         width: 100%;
         visibility: hidden; /* set visibility after map initialization */
       }
-      .legend .esri-legend__service-label {
-        display: none;
+
+      #sliderDiv {
+        z-index: 2;
+        position: absolute;
+        height: 32px;
+        width: 60%;
+        margin: 0 20%;
+        background-color: transparent;
+        bottom: 50px;
       }
     </style>
 
@@ -78,8 +85,9 @@
         "esri/WebMap",
         "esri/views/MapView",
         "esri/widgets/Swipe",
-        "esri/widgets/Legend"
-      ], function(WebMap, MapView, Swipe, Legend) {
+        "esri/widgets/Legend",
+        "esri/widgets/Slider"
+      ], function(WebMap, MapView, Swipe, Legend, Slider) {
         let view, swipes;
 
         const scroller = document.querySelector(".scroller");
@@ -88,7 +96,7 @@
         // initialize the map
         const map = new WebMap({
           portalItem: {
-            id: "105fee001d244d33b90bf3ae5a243679"
+            id: "876936467da74ac29dae381c45a25dd0"
           }
         });
 
@@ -99,7 +107,7 @@
             view = new MapView({
               container: "viewDiv",
               map: map,
-              // zoom: 5,
+              // zoom: 5, // todo: find this later
               // center: [-102, 23],
               padding: {
                 right: 400
@@ -110,6 +118,24 @@
               scroller.scrollTop = scroller.scrollTop + event.deltaY;
               event.stopPropagation();
             });
+
+            const featureTableToggle = document.createElement("div");
+            featureTableToggle.tabIndex = 0;
+            featureTableToggle.addEventListener("click", () => {
+              console.log("toggle");
+            });
+            featureTableToggle.className =
+              "esri-widget--button esri-icon-table";
+            view.ui.add(featureTableToggle, "top-left");
+
+            const sliderWidget = new Slider({
+              min: 1,
+              max: 12,
+              values: [1],
+              steps: 4
+            });
+            view.ui.add(sliderWidget, "manual");
+            sliderWidget.container.id = "sliderDiv";
 
             // get the layers from the webmap
             const layers = map.layers;
@@ -133,6 +159,12 @@
             layers.forEach(function(layer) {
               const slide = document.createElement("div");
               slide.className = "slide";
+
+              const heading = document.createElement("h2");
+              heading.className = "";
+              heading.textContent = layer.title;
+              slide.appendChild(heading);
+
               const legendDiv = document.createElement("div");
               legendDiv.className = "legend";
               const legend = new Legend({
@@ -145,6 +177,7 @@
                 ]
               });
               slide.appendChild(legendDiv);
+
               content.appendChild(slide);
             });
 
