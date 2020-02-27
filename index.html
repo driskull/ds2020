@@ -161,6 +161,7 @@
 
             const featureTableToggle = document.createElement("div");
             featureTableToggle.tabIndex = 0;
+            featureTableToggle.title = "Feature table";
             featureTableToggle.addEventListener("click", function() {
               gridDiv.toggleAttribute("hidden");
             });
@@ -240,17 +241,31 @@
                   rowData.item.feature.attributes[column.path] || "";
               };
 
-              return layer.fields.map(field => {
-                return new Column({
-                  path: field.name,
-                  header: field.alias || field.name,
-                  // sortable: true,
-                  renderFunction
-                  // headerRenderFunction: ({ root }) => {
-                  //   root.innerHTML = "test123";
-                  // }
+              const ignoredFields = [
+                "wfo",
+                "etn",
+                "shape__area",
+                "shape__length",
+                "issue_date",
+                "status"
+              ];
+
+              return layer.fields
+                .filter(
+                  field =>
+                    ignoredFields.indexOf(field.name.toLowerCase()) === -1
+                )
+                .map(field => {
+                  return new Column({
+                    path: field.name,
+                    header: field.alias || field.name,
+                    // sortable: true,
+                    renderFunction
+                    // headerRenderFunction: ({ root }) => {
+                    //   root.innerHTML = "test123";
+                    // }
+                  });
                 });
-              });
             }
 
             // Converts 'sortOrder' from Vaadin-Grid to correct format for 'orderByFields' for layer query
