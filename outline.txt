@@ -5,7 +5,7 @@
 - Show how you can build an impactful app using a few widgets in the API.
   - Explain webmap:  webmap of the U.S. containing 8 tornado warning layers for the years 2002-2011.
   - Swipe widget to show a portion of one or more layers on the map
-  - Slider widget to configure the season for tonado warnings.
+  - Slider widget to configure the season for tornado warnings.
   - Next API release: FeatureTable widget to display feature data from a layer.
     - View's user interface to house a button to open FeatureTable
   - configure existing popup widget to have an action to open table at a specific feature's row.
@@ -15,7 +15,7 @@
     - Show demo with different locale set?
   - Accessible
     - Use keyboard to tab through widget?
-  - themable
+  - themeable
     - Apply dark theme to demo? or custom theme? or just mention?
   - open source
 
