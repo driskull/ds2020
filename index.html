@@ -44,6 +44,10 @@
         /* height: 30%; */
       }
 
+      .feature-table-button {
+        border: none;
+      }
+
       .scroller {
         position: absolute;
         overflow-y: scroll;
@@ -159,14 +163,13 @@
               event.stopPropagation();
             });
 
-            const featureTableToggle = document.createElement("div");
-            featureTableToggle.tabIndex = 0;
+            const featureTableToggle = document.createElement("button");
             featureTableToggle.title = "Feature table";
             featureTableToggle.addEventListener("click", function() {
               gridDiv.toggleAttribute("hidden");
             });
             featureTableToggle.className =
-              "esri-widget--button esri-icon-table";
+              "esri-widget--button esri-icon-table feature-table-button";
             view.ui.add(featureTableToggle, "top-left");
 
             const sliderDiv = document.createElement("div");
@@ -182,10 +185,9 @@
               max: 3,
               values: [0],
               steps: 1,
-              labelsVisible: true,
               visibleElements: {
                 labels: true,
-                rangeLabels: true
+                rangeLabels: false
               }
             });
             slider.tickConfigs = [
@@ -246,7 +248,7 @@
                 "etn",
                 "shape__area",
                 "shape__length",
-                "issue_date",
+                "issuedate",
                 "status"
               ];
 
