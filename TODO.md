@@ -1,0 +1,4 @@
+- Jim Herries team for map makeover, popup setup.
+- Review design of app with Alan
+- Wait for FeatureTable PR and installed in /next
+-
