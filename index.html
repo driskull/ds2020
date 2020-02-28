@@ -18,96 +18,7 @@
     />
     <script src="https://js.arcgis.com/4.14/"></script> -->
 
-    <style type="text/css" media="screen">
-      html,
-      body,
-      #viewDiv {
-        font-family: "Avenir Next W00", "Helvetica Neue", Helvetica, Arial,
-          sans-serif;
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-      }
-
-      #viewDiv {
-        position: absolute;
-        z-index: 1;
-      }
-
-      #gridDiv {
-        position: absolute;
-        z-index: 2;
-        width: 100%;
-        bottom: 0;
-        /* height: 30%; */
-      }
-
-      .feature-table-button {
-        border: none;
-      }
-
-      .scroller {
-        position: absolute;
-        overflow-y: scroll;
-        width: 350px;
-        background-color: rgba(255, 255, 255, 0.7);
-        height: 100%;
-        right: 0;
-        padding: 0;
-        margin: 0;
-        z-index: 2;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      }
-
-      .scroller > .content {
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        align-content: stretch;
-        justify-content: space-evenly;
-      }
-
-      .scroller > .content > .slide {
-        flex: 1;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-      }
-
-      .legend {
-        background-color: transparent;
-        width: 100%;
-        visibility: hidden;
-        /* set visibility after map initialization */
-      }
-
-      #sliderDiv {
-        box-sizing: border-box;
-        z-index: 2;
-        position: absolute;
-        padding: 40px 60px;
-        width: 60%;
-        margin: 0 20%;
-        bottom: 36px;
-        background-color: rgba(255, 255, 255, 0.7);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-      }
-
-      .esri-slider {
-        background: transparent;
-      }
-
-      .slider-heading {
-        text-align: center;
-        margin: 0 0 30px 0;
-        padding: 0;
-      }
-    </style>
+    <link rel="stylesheet" href="app.css" />
 
     <script>
       require([
@@ -139,7 +50,7 @@
         // initialize the map
         const map = new WebMap({
           portalItem: {
-            id: "876936467da74ac29dae381c45a25dd0"
+            id: "692c3794ebd24099a8ad9116b8440bff"
           }
         });
 
@@ -173,37 +84,6 @@
             featureTableToggle.className =
               "esri-widget--button esri-icon-table feature-table-button";
             view.ui.add(featureTableToggle, "top-left");
-
-            const sliderDiv = document.createElement("div");
-            const sliderHeading = document.createElement("h2");
-            sliderHeading.className = "slider-heading";
-            sliderHeading.textContent = "Season";
-            sliderDiv.appendChild(sliderHeading);
-            sliderDiv.id = "sliderDiv";
-            const seasons = ["Winter", "Spring", "Summer", "Fall"];
-            const slider = new Slider({
-              container: document.createElement("div"),
-              min: 0,
-              max: 3,
-              values: [0],
-              steps: 1,
-              visibleElements: {
-                labels: true,
-                rangeLabels: false
-              }
-            });
-            slider.tickConfigs = [
-              {
-                mode: "count",
-                values: 4
-              }
-            ];
-            slider.labelFormatFunction = function(value, type) {
-              return seasons[value];
-            };
-
-            sliderDiv.appendChild(slider.container);
-            view.ui.add(sliderDiv, "manual");
 
             // get the layers from the webmap
             const layers = map.layers;
@@ -352,20 +232,9 @@
             layers.forEach(function(layer, index) {
               const slide = document.createElement("div");
               slide.className = "slide";
-              const layerExpression = layer.definitionExpression;
-
-              layer.definitionExpression = `${layerExpression} AND season='${seasons[0]}'`;
-
-              layer.visible = true;
-
-              slider.watch("values", function(values) {
-                const value = values[0];
-                layer.definitionExpression = `${layerExpression} AND season='${seasons[value]}'`;
-              });
-
               const heading = document.createElement("h2");
               heading.className = "heading";
-              heading.textContent = `${layer.title} Tornado Warnings`;
+              heading.textContent = `${layer.title} Tornado Warnings 2002-2011`;
               slide.appendChild(heading);
 
               const legendDiv = document.createElement("div");
