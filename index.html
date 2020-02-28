@@ -26,22 +26,8 @@
         "esri/views/MapView",
         "esri/widgets/Swipe",
         "esri/widgets/Legend",
-        "esri/widgets/Slider",
-        "esri/widgets/FeatureTable/support/FeatureStore",
-        "esri/widgets/FeatureTable/Grid/Column",
-        "esri/widgets/FeatureTable/Grid/Grid",
-        "esri/widgets/FeatureTable/Grid/GridViewModel"
-      ], function(
-        WebMap,
-        MapView,
-        Swipe,
-        Legend,
-        Slider,
-        FeatureStore,
-        Column,
-        Grid,
-        GridViewModel
-      ) {
+        "esri/widgets/FeatureTable"
+      ], function(WebMap, MapView, Swipe, Legend, FeatureTable) {
         let view, swipes;
 
         const scroller = document.querySelector(".scroller");
@@ -73,17 +59,17 @@
               event.stopPropagation();
             });
 
-            const featureTableToggle = document.createElement("button");
-            featureTableToggle.title = "Feature table";
-            featureTableToggle.addEventListener("click", function() {
-              gridDiv.toggleAttribute("hidden");
-              if (!featureTable) {
+            const tableToggle = document.createElement("button");
+            tableToggle.title = "Feature table";
+            tableToggle.addEventListener("click", function() {
+              tableDiv.toggleAttribute("hidden");
+              if (!table) {
                 setupFeatureTable();
               }
             });
-            featureTableToggle.className =
+            tableToggle.className =
               "esri-widget--button esri-icon-table feature-table-button";
-            view.ui.add(featureTableToggle, "top-left");
+            view.ui.add(tableToggle, "top-left");
 
             // get the layers from the webmap
             const layers = map.layers;
@@ -103,129 +89,18 @@
               });
             });
 
-            let featureTable = null;
+            let table = null;
 
-            const gridDiv = document.createElement("div");
-            gridDiv.id = "gridDiv";
-            gridDiv.hidden = true;
-            view.ui.add(gridDiv, "manual");
+            const tableDiv = document.createElement("div");
+            tableDiv.id = "tableDiv";
+            tableDiv.hidden = true;
+            view.ui.add(tableDiv, "manual");
 
             function setupFeatureTable() {
-              // Generate 'columns' from layer fields
-              // Requires using a custom renderer to work with our custom store
-              function getColumns() {
-                if (!layer.fields) {
-                  return [];
-                }
-
-                const renderFunction = ({ root, column, rowData }) => {
-                  if (
-                    !column ||
-                    !column.path ||
-                    !rowData ||
-                    !rowData.item ||
-                    !rowData.item.feature
-                  ) {
-                    return "";
-                  }
-
-                  root.innerHTML =
-                    rowData.item.feature.attributes[column.path] || "";
-                };
-
-                const ignoredFields = [
-                  "wfo",
-                  "etn",
-                  "shape__area",
-                  "shape__length",
-                  "issuedate",
-                  "status"
-                ];
-
-                return layer.fields
-                  .filter(
-                    field =>
-                      ignoredFields.indexOf(field.name.toLowerCase()) === -1
-                  )
-                  .map(field => {
-                    return new Column({
-                      path: field.name,
-                      header: field.alias || field.name,
-                      // sortable: true,
-                      renderFunction
-                      // headerRenderFunction: ({ root }) => {
-                      //   root.innerHTML = "test123";
-                      // }
-                    });
-                  });
-              }
-
-              // Converts 'sortOrder' from Vaadin-Grid to correct format for 'orderByFields' for layer query
-              function getOrderByFieldsFromSortOrder(orders) {
-                if (!orders || !orders.length) {
-                  return [];
-                }
-
-                return orders
-                  .filter(
-                    (order, pos, arr) =>
-                      arr.map(ord => ord.path).indexOf(order.path) === pos
-                  )
-                  .map(
-                    ({ direction, path }) =>
-                      path + " " + direction.toUpperCase()
-                  );
-              }
-
-              // Converts 'filters' from Vaadin-Grid to correct format for 'where' clause for layer query
-              function getWhereClauseFromFilter(filters) {
-                return filters
-                  .filter(
-                    ({ value }) =>
-                      value !== null && value !== undefined && value !== ""
-                  )
-                  .map(
-                    (filter, i) =>
-                      (i > 0 ? " AND " : "") +
-                      `${filter.path} LIKE '%${filter.value}%'`
-                  )
-                  .join(""); // TODO - breaks querying in some workflows
-              }
-
-              const layer = layers.getItemAt(0);
-              const store = new FeatureStore({
-                layer
+              table = new FeatureTable({
+                layer: layers.getItemAt(0),
+                container: tableDiv
               });
-
-              featureTable = new Grid({
-                viewModel: new GridViewModel({
-                  // Modify 'dataProvider' to work with our custom store
-                  dataProvider: async function(params, callback) {
-                    const { page, pageSize, sortOrders, filters } = params;
-                    const orderByFields = getOrderByFieldsFromSortOrder(
-                      sortOrders
-                    );
-                    const where = getWhereClauseFromFilter(filters) || "1=1";
-                    // const where = "OBJECTID = 2";
-
-                    await store.set({
-                      orderByFields,
-                      where
-                    });
-
-                    if (store.state !== "loaded") {
-                      await store.load();
-                    }
-
-                    callback && callback(await store.query(params));
-                  },
-                  store
-                }),
-                container: gridDiv
-              });
-
-              // Use layer fields to generate columns
-              layer.when(() => featureTable.set("columns", getColumns()));
             }
 
             // create a legend for each layer and add it to the map
