@@ -9,6 +9,7 @@
   - Setup for you in a view
   - customizable through settings
 - Explain webmap in simple app
+  - also using legend
 - Configure popup demo
 - Show popup config src
 - Next API release: FeatureTable widget to display attributes of features from a layer in a tabular display.

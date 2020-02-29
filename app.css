@@ -31,17 +31,18 @@ body,
   display: block;
   position: absolute;
   z-index: 2;
-  top: -28px;
-  height: 29px;
-  right: 0;
+  top: 1px;
+  height: 40px;
+  right: 1px;
   background-color: #fff;
-  padding: 6px 10px;
+  padding: 11px;
   margin: 0;
   border: none;
-  border-top: 1px solid gray;
-  border-right: 1px solid gray;
-  border-left: 1px solid gray;
   cursor: pointer;
+}
+
+.close-table-button:hover {
+  background-color: lightgray;
 }
 
 .scroller {

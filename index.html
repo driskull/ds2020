@@ -68,22 +68,24 @@
               }
             });
 
-            function closeTable() {
-              tableContainerDiv.setAttribute("hidden", true);
-
+            function destroyTable() {
               if (table) {
                 table.destroy();
+                table = null;
               }
             }
 
+            function closeTable() {
+              destroyTable();
+              tableContainerDiv.setAttribute("hidden", true);
+            }
+
             function openTable(event) {
+              destroyTable();
+
               tableContainerDiv.removeAttribute("hidden");
               const selectedFeature = event.target.selectedFeature;
               const layer = selectedFeature.layer;
-
-              if (table) {
-                table.destroy();
-              }
 
               const tableDiv = document.createElement("div");
               tableDiv.id = "tableDiv";
@@ -105,12 +107,6 @@
 
             // get the layers from the webmap
             const layers = map.layers.reverse().filter(layer => layer.visible);
-
-            // Swipe Widget
-            view.on("mouse-wheel", function(event) {
-              scroller.scrollTop = scroller.scrollTop + event.deltaY;
-              event.stopPropagation();
-            });
 
             // create a swipe widget for each layer
             swipes = layers.map(function(layer) {
@@ -215,6 +211,12 @@
             for (let i = 0; i < slideDivs.length; i++) {
               slideDivs[i].style.visibility = "visible";
             }
+
+            // stop view scrolling to zoom
+            view.on("mouse-wheel", function(event) {
+              scroller.scrollTop = scroller.scrollTop + event.deltaY;
+              event.stopPropagation();
+            });
 
             // stop default scroll
             scroller.addEventListener("wheel", function(event) {
