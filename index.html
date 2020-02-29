@@ -50,13 +50,23 @@
               }
             });
 
-            // get the layers from the webmap
-            const layers = map.layers.reverse().filter(layer => layer.visible);
+            // Custom Action
+            const customAction = {
+              title: "Attributes",
+              id: "table-action",
+              className: "esri-icon-table"
+            };
 
-            const tableContainerDiv = document.getElementById(
-              "tableContainerDiv"
-            );
-            view.ui.add(tableContainerDiv, "manual");
+            view.popup.actions.push(customAction);
+
+            // Event handler that fires each time an action is clicked.
+            view.popup.on("trigger-action", function(event) {
+              // Execute the openTable() function if the 'table-action' action is clicked
+              if (event.action.id === "table-action") {
+                openTable(event);
+                view.popup.close();
+              }
+            });
 
             function closeTable() {
               tableContainerDiv.setAttribute("hidden", true);
@@ -67,7 +77,6 @@
             }
 
             function openTable(event) {
-              view.popup.close();
               tableContainerDiv.removeAttribute("hidden");
               const selectedFeature = event.target.selectedFeature;
               const layer = selectedFeature.layer;
@@ -89,6 +98,14 @@
             const closeButton = document.getElementById("closeButton");
             closeButton.addEventListener("click", closeTable);
 
+            const tableContainerDiv = document.getElementById(
+              "tableContainerDiv"
+            );
+            view.ui.add(tableContainerDiv, "manual");
+
+            // get the layers from the webmap
+            const layers = map.layers.reverse().filter(layer => layer.visible);
+
             // Swipe Widget
             view.on("mouse-wheel", function(event) {
               scroller.scrollTop = scroller.scrollTop + event.deltaY;
@@ -108,23 +125,6 @@
                   divider: true
                 }
               });
-            });
-
-            // Custom Action
-            const customAction = {
-              title: "Attributes",
-              id: "table-action",
-              className: "esri-icon-table"
-            };
-
-            view.popup.actions.push(customAction);
-
-            // Event handler that fires each time an action is clicked.
-            view.popup.on("trigger-action", function(event) {
-              // Execute the measureThis() function if the measure-this action is clicked
-              if (event.action.id === "table-action") {
-                openTable(event);
-              }
             });
 
             // create a legend for each layer and add it to the map
