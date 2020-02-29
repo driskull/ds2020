@@ -27,10 +27,12 @@ body,
 }
 
 .close-table-button {
+  box-sizing: border-box;
   display: block;
   position: absolute;
   z-index: 2;
-  top: -30px;
+  top: -28px;
+  height: 29px;
   right: 0;
   background-color: #fff;
   padding: 6px 10px;

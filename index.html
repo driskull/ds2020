@@ -51,7 +51,7 @@
             });
 
             // get the layers from the webmap
-            const layers = map.layers.reverse();
+            const layers = map.layers.reverse().filter(layer => layer.visible);
 
             const tableContainerDiv = document.getElementById(
               "tableContainerDiv"
