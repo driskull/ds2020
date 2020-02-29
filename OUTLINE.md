@@ -22,4 +22,4 @@
 - Additional benefits of these widgets
   - Internationalized in 30+ languages
   - Code for the view and sass is open source on Github
-  - Themable by using the JSAPI resources SASS on github
+  - Themable by using the tooling on JSAPI resources on github
