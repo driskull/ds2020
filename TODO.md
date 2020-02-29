@@ -1,6 +1,4 @@
-- Jim Herries team for map makeover, popup setup.
 - Wait for FeatureTable PR and installed in /next
-- What do we want to say about FeatureTable? Think and add to outline.
 - Simplify code
 
 * tab showing widget in sdk before each app.
