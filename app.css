@@ -15,15 +15,31 @@ body,
   z-index: 1;
 }
 
-#tableDiv {
+.table-container {
   position: absolute;
   z-index: 2;
   width: 100%;
   bottom: 0;
   height: 35%;
 }
-#tableDiv[hidden] {
+.table-container[hidden] {
   display: none;
+}
+
+.close-table-button {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: -30px;
+  right: 0;
+  background-color: #fff;
+  padding: 6px 10px;
+  margin: 0;
+  border: none;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  border-left: 1px solid gray;
+  cursor: pointer;
 }
 
 .scroller {
@@ -62,6 +78,10 @@ body,
 .legend {
   background-color: transparent;
   width: 100%;
+}
+
+.legend .esri-legend__service-label {
+  display: none;
 }
 
 .content h2 {

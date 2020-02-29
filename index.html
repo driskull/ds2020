@@ -51,28 +51,36 @@
             });
 
             // get the layers from the webmap
-            const layers = map.layers;
+            const layers = map.layers.reverse();
 
-            // Feature Table Widget
-            const tableDiv = document.createElement("div");
-            tableDiv.id = "tableDiv";
-            tableDiv.hidden = true;
-            view.ui.add(tableDiv, "manual");
+            const tableContainerDiv = document.getElementById(
+              "tableContainerDiv"
+            );
+            view.ui.add(tableContainerDiv, "manual");
 
-            function toggleTable() {
-              tableDiv.toggleAttribute("hidden");
-              if (!table) {
-                table = new FeatureTable({
-                  layer: layers.getItemAt(0),
-                  container: tableDiv
-                });
+            const closeButton = document.getElementById("closeButton");
+            closeButton.addEventListener("click", function() {
+              tableContainerDiv.setAttribute("hidden", true);
+            });
+
+            function toggleTable(event) {
+              tableContainerDiv.removeAttribute("hidden");
+              const selectedFeature = event.target.selectedFeature;
+              const layer = selectedFeature.layer;
+
+              if (table) {
+                table.destroy();
               }
-            }
 
-            const tableToggle = document.createElement("div");
-            tableToggle.className = "esri-widget--button esri-icon-table";
-            view.ui.add(tableToggle, "top-left");
-            tableToggle.addEventListener("click", toggleTable);
+              const tableDiv = document.createElement("div");
+              tableDiv.id = "tableDiv";
+              tableContainerDiv.appendChild(tableDiv);
+
+              table = new FeatureTable({
+                layer: layer,
+                container: tableDiv
+              });
+            }
 
             // Swipe Widget
             view.on("mouse-wheel", function(event) {
@@ -108,7 +116,7 @@
             view.popup.on("trigger-action", function(event) {
               // Execute the measureThis() function if the measure-this action is clicked
               if (event.action.id === "table-action") {
-                toggleTable();
+                toggleTable(event);
               }
             });
 
@@ -216,6 +224,11 @@
   </head>
 
   <body>
+    <div id="tableContainerDiv" class="table-container" hidden>
+      <button id="closeButton" class="close-table-button">
+        <span class="esri-icon-close"></span>
+      </button>
+    </div>
     <div id="viewDiv"></div>
     <div class="scroller">
       <div class="content"></div>
