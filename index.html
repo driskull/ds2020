@@ -43,8 +43,8 @@
             view = new MapView({
               container: "viewDiv",
               map: map,
-              zoom: 5,
-              center: [-98.5795, 39.8283],
+              // zoom: 5,
+              // center: [-98.5795, 39.8283],
               padding: {
                 right: 350
               }
@@ -59,10 +59,7 @@
             tableDiv.hidden = true;
             view.ui.add(tableDiv, "manual");
 
-            const tableToggle = document.createElement("div");
-            tableToggle.className = "esri-widget--button esri-icon-table";
-            view.ui.add(tableToggle, "top-left");
-            tableToggle.addEventListener("click", function() {
+            function toggleTable() {
               tableDiv.toggleAttribute("hidden");
               if (!table) {
                 table = new FeatureTable({
@@ -70,7 +67,12 @@
                   container: tableDiv
                 });
               }
-            });
+            }
+
+            const tableToggle = document.createElement("div");
+            tableToggle.className = "esri-widget--button esri-icon-table";
+            view.ui.add(tableToggle, "top-left");
+            tableToggle.addEventListener("click", toggleTable);
 
             // Swipe Widget
             view.on("mouse-wheel", function(event) {
@@ -106,7 +108,7 @@
             view.popup.on("trigger-action", function(event) {
               // Execute the measureThis() function if the measure-this action is clicked
               if (event.action.id === "table-action") {
-                tableDiv.toggleAttribute("hidden");
+                toggleTable();
               }
             });
 
