@@ -6,7 +6,7 @@
       name="viewport"
       content="initial-scale=1,maximum-scale=1,user-scalable=no"
     />
-    <title>Swipe Widget with Scroll - 4.14</title>
+    <title>Esri Developer Summit 2020</title>
 
     <link rel="stylesheet" href="/git/arcgis-js-api-4/esri/css/main.css" />
     <script src="/git/arcgis-js-api-4/test-apps/dojo-config.js"></script>
@@ -14,12 +14,10 @@
 
     <!-- <link
       rel="stylesheet"
-      href="https://js.arcgis.com/4.14/esri/themes/light/main.css"
+      href="https://js.arcgis.com/next/esri/themes/light/main.css"
     />
-    <script src="https://js.arcgis.com/4.14/"></script> -->
-
+    <script src="https://js.arcgis.com/next/"></script> -->
     <link rel="stylesheet" href="app.css" />
-
     <script>
       require([
         "esri/WebMap",
@@ -28,22 +26,20 @@
         "esri/widgets/Legend",
         "esri/widgets/FeatureTable"
       ], function(WebMap, MapView, Swipe, Legend, FeatureTable) {
-        let view, swipes;
+        let view, swipes, table;
 
         const scroller = document.querySelector(".scroller");
         const content = scroller.querySelector(".content");
 
-        // initialize the map
         const map = new WebMap({
           portalItem: {
-            id: "692c3794ebd24099a8ad9116b8440bff"
+            id: "9cc3c3bcc2244ed08d94b53e0493b22f"
           }
         });
 
         map
           .load()
           .then(function() {
-            // create the view
             view = new MapView({
               container: "viewDiv",
               map: map,
@@ -54,25 +50,33 @@
               }
             });
 
+            // get the layers from the webmap
+            const layers = map.layers;
+
+            // Feature Table Widget
+            const tableDiv = document.createElement("div");
+            tableDiv.id = "tableDiv";
+            tableDiv.hidden = true;
+            view.ui.add(tableDiv, "manual");
+
+            const tableToggle = document.createElement("div");
+            tableToggle.className = "esri-widget--button esri-icon-table";
+            view.ui.add(tableToggle, "top-left");
+            tableToggle.addEventListener("click", function() {
+              tableDiv.toggleAttribute("hidden");
+              if (!table) {
+                table = new FeatureTable({
+                  layer: layers.getItemAt(0),
+                  container: tableDiv
+                });
+              }
+            });
+
+            // Swipe Widget
             view.on("mouse-wheel", function(event) {
               scroller.scrollTop = scroller.scrollTop + event.deltaY;
               event.stopPropagation();
             });
-
-            const tableToggle = document.createElement("button");
-            tableToggle.title = "Feature table";
-            tableToggle.addEventListener("click", function() {
-              tableDiv.toggleAttribute("hidden");
-              if (!table) {
-                setupFeatureTable();
-              }
-            });
-            tableToggle.className =
-              "esri-widget--button esri-icon-table feature-table-button";
-            view.ui.add(tableToggle, "top-left");
-
-            // get the layers from the webmap
-            const layers = map.layers;
 
             // create a swipe widget for each layer
             swipes = layers.map(function(layer) {
@@ -89,19 +93,22 @@
               });
             });
 
-            let table = null;
+            // Custom Action
+            const customAction = {
+              title: "Attributes",
+              id: "table-action",
+              className: "esri-icon-table"
+            };
 
-            const tableDiv = document.createElement("div");
-            tableDiv.id = "tableDiv";
-            tableDiv.hidden = true;
-            view.ui.add(tableDiv, "manual");
+            view.popup.actions.push(customAction);
 
-            function setupFeatureTable() {
-              table = new FeatureTable({
-                layer: layers.getItemAt(0),
-                container: tableDiv
-              });
-            }
+            // Event handler that fires each time an action is clicked.
+            view.popup.on("trigger-action", function(event) {
+              // Execute the measureThis() function if the measure-this action is clicked
+              if (event.action.id === "table-action") {
+                tableDiv.toggleAttribute("hidden");
+              }
+            });
 
             // create a legend for each layer and add it to the map
             layers.forEach(function(layer, index) {
@@ -109,7 +116,7 @@
               slide.className = "slide";
               const heading = document.createElement("h2");
               heading.className = "heading";
-              heading.textContent = `${layer.title} Tornado Warnings 2002-2011`;
+              heading.textContent = layer.title;
               slide.appendChild(heading);
 
               const legendDiv = document.createElement("div");
@@ -123,8 +130,8 @@
                   }
                 ]
               });
-              slide.appendChild(legendDiv);
 
+              slide.appendChild(legendDiv);
               content.appendChild(slide);
             });
 
@@ -186,10 +193,10 @@
             view.watch("height", updateSize);
             updateSize();
 
-            // show layer legends after map has loaded
-            const legendDivs = document.getElementsByClassName("legend");
-            for (let i = 0; i < legendDivs.length; i++) {
-              legendDivs[i].style.visibility = "visible";
+            // show slide divs after map has loaded
+            const slideDivs = document.getElementsByClassName("slide");
+            for (let i = 0; i < slideDivs.length; i++) {
+              slideDivs[i].style.visibility = "visible";
             }
 
             // stop default scroll
@@ -197,12 +204,10 @@
               event.stopImmediatePropagation();
             });
 
+            // listen to scroller scrolling
             scroller.addEventListener("scroll", function() {
               setScroll(scroller.scrollTop);
             });
-          })
-          .catch(function(error) {
-            console.error(error);
           });
       });
     </script>
