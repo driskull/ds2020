@@ -58,12 +58,16 @@
             );
             view.ui.add(tableContainerDiv, "manual");
 
-            const closeButton = document.getElementById("closeButton");
-            closeButton.addEventListener("click", function() {
+            function closeTable() {
               tableContainerDiv.setAttribute("hidden", true);
-            });
 
-            function toggleTable(event) {
+              if (table) {
+                table.destroy();
+              }
+            }
+
+            function openTable(event) {
+              view.popup.close();
               tableContainerDiv.removeAttribute("hidden");
               const selectedFeature = event.target.selectedFeature;
               const layer = selectedFeature.layer;
@@ -81,6 +85,9 @@
                 container: tableDiv
               });
             }
+
+            const closeButton = document.getElementById("closeButton");
+            closeButton.addEventListener("click", closeTable);
 
             // Swipe Widget
             view.on("mouse-wheel", function(event) {
@@ -116,7 +123,7 @@
             view.popup.on("trigger-action", function(event) {
               // Execute the measureThis() function if the measure-this action is clicked
               if (event.action.id === "table-action") {
-                toggleTable(event);
+                openTable(event);
               }
             });
 
