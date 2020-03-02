@@ -26,6 +26,6 @@
   - Developed to support accessibility
   - Internationalized in 30+ languages
   - Code for the view and sass is open source on Github
-  - Themable by using the tooling on JSAPI resources on github
+  - Themable by using the tooling available on JSAPI resources project on Esri's github
 - We hope these widgets will make it easier for you to create great apps!
 - Thank you
