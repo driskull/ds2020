@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Esri Developer Summit 2020</title>
+
+    <link rel="stylesheet" href="/git/arcgis-js-api-4/esri/css/main.css" />
+    <script src="/git/arcgis-js-api-4/test-apps/dojo-config.js"></script>
+    <script src="/git/arcgis-js-api-4/dojo/dojo.js"></script>
+
+    <!-- <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/next/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/next/"></script> -->
+    <link rel="stylesheet" href="app.css" />
+    <script>
+      require([
+        "esri/WebMap",
+        "esri/views/MapView",
+        "esri/widgets/Legend",
+        "esri/widgets/FeatureTable"
+      ], function(WebMap, MapView, Legend, FeatureTable) {
+        let view, table;
+
+        const map = new WebMap({
+          portalItem: { id: "9cc3c3bcc2244ed08d94b53e0493b22f" }
+        });
+
+        map.load().then(function() {
+          view = new MapView({
+            container: "viewDiv",
+            map: map
+          });
+
+          const legend = new Legend({
+            view: view
+          });
+          view.ui.add(legend, "top-right");
+
+          const customAction = {
+            title: "Attributes",
+            id: "table-action",
+            className: "esri-icon-table"
+          };
+          view.popup.actions.push(customAction);
+
+          // Event handler that fires each time an action is clicked.
+          view.popup.on("trigger-action", function(event) {
+            // Execute the openTable() function if the 'table-action' action is clicked
+            if (event.action.id === "table-action") {
+              openTable(event);
+              view.popup.close();
+            }
+          });
+
+          function openTable(event) {
+            closeTable();
+
+            tableContainerDiv.removeAttribute("hidden");
+            const layer = event.target.selectedFeature.layer;
+
+            const tableDiv = document.createElement("div");
+            tableContainerDiv.appendChild(tableDiv);
+
+            table = new FeatureTable({
+              layer: layer,
+              container: tableDiv
+            });
+          }
+
+          function closeTable() {
+            if (table) {
+              table.destroy();
+              table = null;
+            }
+            tableContainerDiv.setAttribute("hidden", true);
+          }
+
+          const tableContainerDiv = document.getElementById(
+            "tableContainerDiv"
+          );
+          view.ui.add(tableContainerDiv, "manual");
+
+          const closeButton = document.getElementById("closeButton");
+          closeButton.addEventListener("click", closeTable);
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+    <div id="tableContainerDiv" class="table-container" hidden>
+      <button id="closeButton" class="close-table-button">
+        <span class="esri-icon-close"></span>
+      </button>
+    </div>
+  </body>
+</html>
