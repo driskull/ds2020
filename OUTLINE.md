@@ -1,9 +1,8 @@
 ## Outline
 
-- The ArcGIS JavaScript API provides over 40 ready to use widgets.
-  - These widgets help you build great apps without writing a lot of code.
-- I'd like to show how using just a few widgets impactful app.
-- Start Popup widget on API reference page
+- The ArcGIS JavaScript API provides ready to use widgets to help you build great apps without writing a lot of code.
+- I'd like to show how using just a few widgets can impactful app.
+- Start Popup widget on SDK
   - view content about a feature
   - Setup for you on a view
   - Just like all our widgets easily customized through settings
@@ -21,8 +20,7 @@
 - Lets see src
 - Swipe widget on the API documentation. New since last year
   - lets you compare the differences between two or more layers by clipping horizontally or vertically.
-- Swipe widget continuous scroll sample
-- swipe widget demo scroll
+- swipe widget demo
   - continuous scrolling to compare a set of layers
 - Additional benefits of these widgets
   - Developed to support accessibility
