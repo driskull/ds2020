@@ -8,7 +8,7 @@ require([
   let view, table, swipes, scroller, content;
 
   const map = new WebMap({
-    portalItem: { id: "9cc3c3bcc2244ed08d94b53e0493b22f" }
+    portalItem: { id: "f5a89635bb394f7da2f9c82cdd73e459" }
   });
 
   map
@@ -71,7 +71,7 @@ require([
       content = scroller.querySelector(".content");
 
       // get the layers from the webmap
-      const layers = map.layers.reverse().filter(layer => layer.visible);
+      const layers = map.layers;
 
       // create a swipe widget for each layer
       swipes = layers.map(function(layer) {
