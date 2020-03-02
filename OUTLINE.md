@@ -8,18 +8,25 @@
   - view content about a feature
   - Setup for you in a view
   - customizable through settings
-- Explain webmap in simple app
-  - also using legend
-- Configure popup demo
-- Show popup config src
-- Next API release: FeatureTable widget to display attributes of features from a layer in a tabular display.
-- FeatureTable from popup demo
-- Show featuretable widget src
+- Legend widget on API
+  - nice thing: widgets are highly customizable with settings and options
+  - So I can display only a single layer or all layers in the legend
+- Lets look at a demo customizing the popup
+  - Here's a simple app with a map and the legend widget
+  - webmap description
+  - click feature
+  - explain custom action
+  - FeatureTable
+    - view attributes for features on a layer in a data table
+  - available in next API now, will be public 4.15
+- Lets see src
 - Lets look at the Swipe widget on the API documentation.
   - lets you compare the differences between two or more layers by clipping horizontally or vertically.
+- Swipe widget continuous scroll sample
 - swipe widget demo scroll
   - continuous scrolling to compare a set of layers
 - Additional benefits of these widgets
   - Internationalized in 30+ languages
   - Code for the view and sass is open source on Github
   - Themable by using the tooling on JSAPI resources on github
+- We hope these will allow you to easily create great apps! thank you
