@@ -94,7 +94,7 @@
             content = scroller.querySelector(".content");
 
             // get the layers from the webmap
-            const layers = map.layers.reverse();
+            const layers = map.layers.reverse().filter(layer => layer.visible);
 
             // create a swipe widget for each layer
             swipes = layers.map(function(layer) {
