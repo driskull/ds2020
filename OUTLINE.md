@@ -7,18 +7,16 @@
   - view content about a feature
   - Setup for you on a view
   - Just like all our widgets customized through settings
-- Another helpful widget: Legend widget
-  - configure legend to only a single layer or all layers in map
-- Lets look at a demo customizing the popup
-  - Here's a simple app using the legend widget
+- Lets look at a simple app with a few widgets.
+  - Here's a simple app using the legend widget, useful to display information about the map or specific layers
   - webmap description
   - click feature
   - explain custom action
   - Next release of API: FeatureTable
     - view attributes for features on a layer using a data table
-  - You can test out now using CDN/next
+  - You can test out now using CDN /next instead of the version number
 - Lets see src
-- Lets look at the Swipe widget on the API documentation.
+- Swipe widget on the API documentation. New since last year
   - lets you compare the differences between two or more layers by clipping horizontally or vertically.
 - Swipe widget continuous scroll sample
 - swipe widget demo scroll
