@@ -1,8 +1,5 @@
 require([
-  "esri/WebMap",
-  "esri/views/MapView",
-  "esri/widgets/Legend",
-  "esri/widgets/FeatureTable"
+  "esri/WebMap", "esri/views/MapView", "esri/widgets/Legend", "esri/widgets/FeatureTable"
 ], function(WebMap, MapView, Legend, FeatureTable) {
   let view, table;
 
@@ -63,7 +60,6 @@ require([
     const tableContainerDiv = document.getElementById("tableContainerDiv");
     view.ui.add(tableContainerDiv, "manual");
 
-    const closeButton = document.getElementById("closeButton");
-    closeButton.addEventListener("click", closeTable);
+    document.getElementById("closeButton").addEventListener("click", closeTable);
   });
 });
