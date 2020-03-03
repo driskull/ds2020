@@ -1,15 +1,16 @@
 ## Outline
 
 - The ArcGIS JavaScript API provides ready to use widgets to help you build great apps without writing a lot of code.
-- I'd like to show how using just a few widgets can impactful app.
-- Start Popup widget on SDK
-  - view content about a feature
-  - Setup for you on a view
-  - Just like all our widgets easily customized through settings
-- Lets look at a simple app with a few widgets.
-  - Here's a simple app using the legend widget
-  - Legend widget useful to display information about the map or specific layers
-  - DESCRIBE WEBMAP
+- I'd like to show how you can build an impactful map using only a few widgets.
+- SDK page showing the Popup widget
+  - Popup lets you view content about a feature
+  - Automaticly setup for you on a view
+  - Just like all our widgets, its easy to customize using settings
+- Lets look at at an example
+  - Here's a simple app using a webmap
+  - 10 layers, each counting home values in a specific range for the new york area
+  - Top right: Legend widget
+    - useful to display symbology for the layers within the map
   - click feature
   - explain custom action
   - Next release of API: FeatureTable
@@ -27,5 +28,5 @@
   - Internationalized in 30+ languages
   - Code for the view and sass is open source on Github
   - Themable by using the tooling available on JSAPI resources project on Esri's github.
-- We hope these widgets will make it easier for you to create great apps!
+- We hope these widgets will make it easier to create awesome apps!
 - Thank you

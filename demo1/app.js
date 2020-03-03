@@ -22,7 +22,7 @@ require([
     view.ui.add(legend, "top-right");
 
     const customAction = {
-      title: "Attributes",
+      title: "Table",
       id: "table-action",
       className: "esri-icon-table"
     };

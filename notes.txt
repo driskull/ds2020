@@ -1,0 +1,15 @@
+notes
+
+- fix extents
+- dont say clicking on links
+- don't repeat widget so much its assumed after showing widget
+- popup and legend widget (practice)
+- fix font clicking on src
+- bigger font
+- drag src code
+- elaborate on widget view (customizing)
+- elaborate on sass theming and slower scrolling (page down)
+- tweak to sass experience
+- explain custom action better
+- no showing SDK for FeatureTable
+- less repeating
