@@ -13,7 +13,7 @@
     - useful to display symbology for the layers within the map
   - click feature
   - explain custom action
-  - Next release of API: FeatureTable
+  - Next release of API: FeatureTable in Beta
     - view attributes for features on a layer using a data table
     - Loads data dynamically
     - Sort data
