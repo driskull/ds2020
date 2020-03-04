@@ -15,4 +15,5 @@ Feedback.txt
 - Setup script
 - hide bookmarks bar
 - hide dock
-- have IDE open
+- have IDE open and only showing 1 file
+- turn off volume
