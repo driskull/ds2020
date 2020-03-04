@@ -1,24 +1,25 @@
 ## Outline
 
 - The ArcGIS JavaScript API provides ready to use widgets to help you build great apps without writing a lot of code.
-- I'd like to show how you can build an impactful app with only a few widgets
+- I'd like to show how you can build an impactful app using only a few widgets
 - Reference page for the Popup widget
-  - Popup lets you view content about a feature
   - Automatically setup on a view
+  - Popup lets you view content about a feature
   - Just like all our widgets, its easy to customize using settings
+  - custom action explain
 - Lets look at an example
-  - Here's a simple app using a webmap in New York area
-  - Map has 10 layers
-  - each layer shows a count of home values in a defined range
+  - Here's a map of the New York area
+  - Using webmap with 10 layers
+  - each layer shows info about home values in a defined price range
   - Top right: Legend widget
     - useful to display symbology for the layers on the map
-  - click feature
+  - CLICK FEATURE
   - explain custom action
-  - Next release of API: FeatureTable in Beta
-    - view attributes for features on a layer using a data table
-    - Loads data dynamically
-    - Sort data
-  - You can test out now using CDN '/next' version Julie mentioned
+  - Next release of API: FeatureTable Beta widget
+    - Data table to view attributes all features on a layer
+    - Scroll to load data dynamically
+    - Ability to sort data clicking header
+  - You can test out now using CDN /NEXT version Julie mentioned
 - Lets see src
 - Swipe widget on the API documentation. New since last DS
   - lets you compare the differences between two or more layers by clipping horizontally or vertically.
@@ -28,8 +29,7 @@
 - Additional benefits of these widgets
   - Internationalized in 30+ languages
   - Developed to be accessible to keyboard & screen reader users
-  - Code for the view and sass is open source on Github for customization
-  - reference guide for theming
-  - Tooling available on Esri's Github.
+  - Code for the widget is open source on Github for customization
+  - Links to tooling for theming & styling widgets
 - We hope these widgets will make it easier to create awesome apps!
 - Thank you
