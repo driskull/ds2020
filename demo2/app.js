@@ -49,7 +49,6 @@ require([
         }
 
         const tableDiv = document.createElement("div");
-        tableDiv.className = "table-container";
         view.ui.add(tableDiv, "manual");
 
         table = new FeatureTable({
