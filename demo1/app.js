@@ -1,7 +1,7 @@
 require([
   "esri/WebMap", "esri/views/MapView", "esri/widgets/Legend", "esri/widgets/FeatureTable"
 ], function(WebMap, MapView, Legend, FeatureTable) {
-  let view, table;
+  let view;
 
   const map = new WebMap({
     portalItem: { id: "f5a89635bb394f7da2f9c82cdd73e459" }
@@ -35,31 +35,16 @@ require([
     });
 
     function openTable(event) {
-      closeTable();
-
-      tableContainerDiv.removeAttribute("hidden");
       const layer = event.target.selectedFeature.layer;
 
       const tableDiv = document.createElement("div");
-      tableContainerDiv.appendChild(tableDiv);
+      tableDiv.className = "table-container";
+      view.ui.add(tableDiv, "manual");
 
-      table = new FeatureTable({
+       new FeatureTable({
         layer: layer,
         container: tableDiv
       });
     }
-
-    function closeTable() {
-      if (table) {
-        table.destroy();
-        table = null;
-      }
-      tableContainerDiv.setAttribute("hidden", true);
-    }
-
-    const tableContainerDiv = document.getElementById("tableContainerDiv");
-    view.ui.add(tableContainerDiv, "manual");
-
-    document.getElementById("closeButton").addEventListener("click", closeTable);
   });
 });
