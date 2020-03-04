@@ -1,7 +1,10 @@
 require([
-  "esri/WebMap", "esri/views/MapView", "esri/widgets/Legend", "esri/widgets/FeatureTable"
+  "esri/WebMap",
+  "esri/views/MapView",
+  "esri/widgets/Legend",
+  "esri/widgets/FeatureTable"
 ], function(WebMap, MapView, Legend, FeatureTable) {
-  let view;
+  let view, table;
 
   const map = new WebMap({
     portalItem: { id: "f5a89635bb394f7da2f9c82cdd73e459" }
@@ -10,6 +13,8 @@ require([
   map.load().then(function() {
     view = new MapView({
       container: "viewDiv",
+      center: [-73.98, 40.75],
+      zoom: 11,
       map: map
     });
 
@@ -37,11 +42,16 @@ require([
     function openTable(event) {
       const layer = event.target.selectedFeature.layer;
 
+      if (table) {
+        table.destroy();
+        table = null;
+      }
+
       const tableDiv = document.createElement("div");
       tableDiv.className = "table-container";
       view.ui.add(tableDiv, "manual");
 
-       new FeatureTable({
+      table = new FeatureTable({
         layer: layer,
         container: tableDiv
       });

@@ -22,28 +22,6 @@ body,
   bottom: 0;
   height: 35%;
 }
-.table-container[hidden] {
-  display: none;
-}
-
-.close-table-button {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  z-index: 2;
-  top: 1px;
-  height: 40px;
-  right: 1px;
-  background-color: #fff;
-  padding: 11px;
-  margin: 0;
-  border: none;
-  cursor: pointer;
-}
-
-.close-table-button:hover {
-  background-color: lightgray;
-}
 
 .scroller {
   position: absolute;
@@ -81,10 +59,6 @@ body,
 .legend {
   background-color: transparent;
   width: 100%;
-}
-
-.legend .esri-legend__service-label {
-  display: none;
 }
 
 .content h2 {

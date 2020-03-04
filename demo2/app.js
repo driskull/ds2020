@@ -17,6 +17,8 @@ require([
       view = new MapView({
         container: "viewDiv",
         map: map,
+        center: [-73.98, 40.75],
+        zoom: 11,
         padding: {
           right: 350
         }
@@ -39,33 +41,22 @@ require([
       });
 
       function openTable(event) {
-        closeTable();
-
-        tableContainerDiv.removeAttribute("hidden");
         const layer = event.target.selectedFeature.layer;
 
+        if (table) {
+          table.destroy();
+          table = null;
+        }
+
         const tableDiv = document.createElement("div");
-        tableContainerDiv.appendChild(tableDiv);
+        tableDiv.className = "table-container";
+        view.ui.add(tableDiv, "manual");
 
         table = new FeatureTable({
           layer: layer,
           container: tableDiv
         });
       }
-
-      function closeTable() {
-        if (table) {
-          table.destroy();
-          table = null;
-        }
-        tableContainerDiv.setAttribute("hidden", true);
-      }
-
-      const tableContainerDiv = document.getElementById("tableContainerDiv");
-      view.ui.add(tableContainerDiv, "manual");
-
-      const closeButton = document.getElementById("closeButton");
-      closeButton.addEventListener("click", closeTable);
 
       scroller = document.querySelector(".scroller");
       content = scroller.querySelector(".content");
@@ -89,7 +80,7 @@ require([
       });
 
       // create a legend for each layer and add it to the map
-      layers.forEach(function(layer, index) {
+      layers.forEach(function(layer) {
         const slide = document.createElement("div");
         slide.className = "slide";
         const heading = document.createElement("h2");
@@ -99,7 +90,7 @@ require([
 
         const legendDiv = document.createElement("div");
         legendDiv.className = "legend";
-        const legend = new Legend({
+        new Legend({
           container: legendDiv,
           view: view,
           layerInfos: [
