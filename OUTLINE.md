@@ -1,17 +1,17 @@
 ## Outline
 
 - The ArcGIS JavaScript API provides ready to use widgets to help you build great apps without writing a lot of code.
-- I'd like to show how you can build an impactful app using only a few widgets.
-- SDK page showing the Popup widget
+- I'd like to show how you can build an impactful app with only a few widgets
+- Reference page for the Popup widget
   - Popup lets you view content about a feature
-  - Automaticly setup for you on a view
+  - Automatically setup on a view
   - Just like all our widgets, its easy to customize using settings
-- Lets look at at an example
-  - Here's a simple app using a webmap
-  - new york area
-  - 10 layers, each counting home values in a defined range
+- Lets look at an example
+  - Here's a simple app using a webmap in New York area
+  - Map has 10 layers
+  - each layer shows a count of home values in a defined range
   - Top right: Legend widget
-    - useful to display symbology for the layers within the map
+    - useful to display symbology for the layers on the map
   - click feature
   - explain custom action
   - Next release of API: FeatureTable in Beta
@@ -24,10 +24,12 @@
   - lets you compare the differences between two or more layers by clipping horizontally or vertically.
 - swipe widget demo
   - continuous scrolling to compare a set of layers
+  - Less cluttered and easier to see patterns
 - Additional benefits of these widgets
-  - Developed to be accessible for keyboard & screen reader navigation
   - Internationalized in 30+ languages
-  - Code for the view and sass is open source on Github
-  - Themable by using the tooling available on JSAPI resources project on Esri's github.
+  - Developed to be accessible to keyboard & screen reader users
+  - Code for the view and sass is open source on Github for customization
+  - reference guide for theming
+  - Tooling available on Esri's Github.
 - We hope these widgets will make it easier to create awesome apps!
 - Thank you
