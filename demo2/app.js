@@ -16,11 +16,12 @@ require([
     .then(function() {
       view = new MapView({
         container: "viewDiv",
-        map: map,
         center: [-73.98, 40.75],
         zoom: 11,
-        padding: {
-          right: 350
+        map: map,
+        popup: {
+          dockEnabled: true,
+          dockOptions: { position: "bottom-left", breakpoint: false }
         }
       });
 
@@ -43,11 +44,6 @@ require([
       function openTable(event) {
         const layer = event.target.selectedFeature.layer;
 
-        if (table) {
-          table.destroy();
-          table = null;
-        }
-
         const tableDiv = document.createElement("div");
         view.ui.add(tableDiv, "manual");
 
@@ -56,6 +52,13 @@ require([
           container: tableDiv
         });
       }
+
+      view.popup.watch("selectedFeature", function(selectedFeature) {
+        if (table && selectedFeature) {
+          table.destroy();
+          table = null;
+        }
+      });
 
       scroller = document.querySelector(".scroller");
       content = scroller.querySelector(".content");

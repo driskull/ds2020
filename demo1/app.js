@@ -15,7 +15,11 @@ require([
       container: "viewDiv",
       center: [-73.98, 40.75],
       zoom: 11,
-      map: map
+      map: map,
+      popup: {
+        dockEnabled: true,
+        dockOptions: { position: "bottom-left", breakpoint: false }
+      }
     });
 
     const legend = new Legend({
@@ -42,11 +46,6 @@ require([
     function openTable(event) {
       const layer = event.target.selectedFeature.layer;
 
-      if (table) {
-        table.destroy();
-        table = null;
-      }
-
       const tableDiv = document.createElement("div");
       view.ui.add(tableDiv, "manual");
 
@@ -55,5 +54,12 @@ require([
         container: tableDiv
       });
     }
+
+    view.popup.watch("selectedFeature", function(selectedFeature) {
+      if (table && selectedFeature) {
+        table.destroy();
+        table = null;
+      }
+    });
   });
 });

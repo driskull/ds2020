@@ -1,4 +1,4 @@
-## Outline
+# Outline
 
 - The ArcGIS JavaScript API provides ready to use widgets to help you build great apps without writing a lot of code.
 - I'd like to show how you can build an impactful app using only a few widgets
@@ -28,8 +28,11 @@
   - Less cluttered and easier to see patterns
 - Additional benefits of these widgets
   - Internationalized in 30+ languages
+  - Presentation/logic is separated into view/viewModels
   - Developed to be accessible to keyboard & screen reader users
-  - Code for the widget is open source on Github for customization
+  - Code for the widget view and styles
+    - open source on Github
+    - You can tweak design/functionality
   - Links to tooling for theming & styling widgets
 - We hope these widgets will make it easier to create awesome apps!
 - Thank you

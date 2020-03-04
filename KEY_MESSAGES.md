@@ -1,4 +1,4 @@
-## Key messages
+# Key Messages
 
 - API provides ready to use widgets to help build your apps
   - Foundation to customize widgets with little code
