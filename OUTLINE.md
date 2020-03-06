@@ -1,38 +1,37 @@
 # Outline
 
-- The ArcGIS JavaScript API provides ready to use widgets to help you build great apps without writing a lot of code.
-- I'd like to show how you can build an impactful app using only a few widgets
-- Reference page for the Popup widget
-  - Automatically setup on a view
-  - Popup lets you view content about a feature
-  - Just like all our widgets, its easy to customize using settings
-  - custom action explain
-- Lets look at an example
-  - Here's a map of the New York area
-  - Using webmap with 10 layers
+- Thanks Euen
+- The ArcGIS JavaScript API provides ready to use widgets, to help you build great apps without writing a lot of code.
+- I'd like to show how you can build an impactful app, using only a few.
+- Heres the reference page Popup
+  - Popup is automatically setup on a view and gives you info about a feature
+  - Just like all widgets, easy to customize via settings
+  - By default, a zoom to action is on the Popup, but as a developer I can add custom actions
+- Lets look at an example app
+  - Here's a webmap of the New York area containing 10 layers
   - each layer shows info about home values in a defined price range
-  - Top right: Legend widget
-    - useful to display symbology for the layers on the map
-  - CLICK FEATURE
-  - explain custom action
-  - Next release of API: FeatureTable Beta widget
-    - Data table to view attributes all features on a layer
-    - Scroll to load data dynamically
-    - Ability to sort data clicking header
-  - You can test out now using CDN /NEXT version Julie mentioned
-- Lets see src
-- Swipe widget on the API documentation. New since last DS
-  - lets you compare the differences between two or more layers by clipping horizontally or vertically.
-- swipe widget demo
-  - continuous scrolling to compare a set of layers
-  - Less cluttered and easier to see patterns
+  - I've also added a Legend in the top right to display symbology for the layers
+  - [CLICK FEATURE]: get information about it
+  - Zoom to it using the default action
+  - Here I added custom action to open a data table
+  - Next release of JSAPI: adding FeatureTable widget
+    - FeatureTable view rows of attributes for features in a layer
+    - As I scroll table, data loaded dynamically
+    - Sort data using column headers
+  - You can try out the FeatureTable right now using the /NEXT version JEREMY mentioned
+- Lets see source for this demo
+- since last DS, we've also added a Swipe widget
+  - Here's a SDK sample using Swipe.
+  - By swiping, layers are partially displayed which is great for comparing data.
+- Building on demo I showed, I've added a multiple Swipe setup.
+  - Each layer now has it's own swipe, that moves as the page is scrolled.
+  - As I move up and down, I can compare layers and see patterns
+- JSAPI widgets are also highly customizable
+  - They use the view viewModel pattern so that logic and presentation are kept separated.
+  - We've made the view and styles open source on GitHub
+  - So you can theme widgets, tweak a widget's design or add functionality
 - Additional benefits of these widgets
   - Internationalized in 30+ languages
-  - Presentation/logic is separated into view/viewModels
-  - Developed to be accessible to keyboard & screen reader users
-  - Code for the widget view and styles
-    - open source on Github
-    - You can tweak design/functionality
-  - Links to tooling for theming & styling widgets
+  - and Developed to be to keyboard & screen-reader accessible
 - We hope these widgets will make it easier to create awesome apps!
-- Thank you
+- Euen

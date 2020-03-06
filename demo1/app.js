@@ -55,11 +55,5 @@ require([
       });
     }
 
-    view.popup.watch("selectedFeature", function(selectedFeature) {
-      if (table && selectedFeature) {
-        table.destroy();
-        table = null;
-      }
-    });
   });
 });
