@@ -17,7 +17,7 @@ require([
       view = new MapView({
         container: "viewDiv",
         center: [-73.98, 40.75],
-        zoom: 11,
+        zoom: 12,
         map: map,
         padding: {
           right: 350
