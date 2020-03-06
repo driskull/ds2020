@@ -44,21 +44,19 @@ require([
       });
 
       function openTable(event) {
-        const tableDiv = document.createElement("div");
-        view.ui.add(tableDiv, "manual");
-
         const layer = event.target.selectedFeature.layer;
 
-        new FeatureTable({
+        const featureTable = new FeatureTable({
           layer,
           fieldConfigs: [
             { name: "ID" },
             { name: "RG_NAME" },
             { name: "COUNTY_NAME" },
             { name: "TOTPOP_CY" }
-          ],
-          container: tableDiv
+          ]
         });
+
+        view.ui.add(featureTable, "manual");
       }
 
       scroller = document.querySelector(".scroller");
