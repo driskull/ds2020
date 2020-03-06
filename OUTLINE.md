@@ -2,7 +2,7 @@
 
 - Thanks Euen
 - The ArcGIS JavaScript API provides ready to use widgets, to help you build great apps without writing a lot of code.
-- I'd like to show how you can build an impactful app with a few of them
+- I'd like to show how you can build an impactful app using a few of them
 - Heres the reference page Popup
   - Popup is automatically setup on a view and gives you info about a feature
   - Just like all widgets, easy to customize via settings
@@ -20,7 +20,6 @@
     - Sort data using column headers
   - You can try out the FeatureTable right now using the /NEXT version JEREMY mentioned
 - Lets see source for this demo
-- So this app was created using less than 60 lines of JS code
 - since last DS, we've also added a Swipe widget
   - Here's a SDK sample using Swipe.
   - By swiping, layers are partially displayed which is great for comparing data.

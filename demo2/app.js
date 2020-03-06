@@ -47,8 +47,10 @@ require([
         const tableDiv = document.createElement("div");
         view.ui.add(tableDiv, "manual");
 
+        const layer = event.target.selectedFeature.layer;
+
         new FeatureTable({
-          layer: event.target.selectedFeature.layer,
+          layer,
           fieldConfigs: [
             { name: "ID" },
             { name: "RG_NAME" },

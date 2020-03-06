@@ -8,52 +8,52 @@ require([
     portalItem: { id: "f5a89635bb394f7da2f9c82cdd73e459" }
   });
 
-  map.load().then(function() {
-    const view = new MapView({
-      container: "viewDiv",
-      center: [-73.98, 40.75],
-      zoom: 12,
-      map: map,
-      popup: {
-        dockEnabled: true,
-        dockOptions: { position: "bottom-left", breakpoint: false }
-      }
-    });
-
-    const legend = new Legend({
-      view: view
-    });
-    view.ui.add(legend, "top-right");
-
-    const customAction = {
-      title: "Table",
-      id: "table-action",
-      className: "esri-icon-table"
-    };
-    view.popup.actions.push(customAction);
-
-    // Event handler that fires each time an action is clicked.
-    view.popup.on("trigger-action", function(event) {
-      if (event.action.id === "table-action") {
-        openTable(event);
-        view.popup.close();
-      }
-    });
-
-    function openTable(event) {
-      const tableDiv = document.createElement("div");
-      view.ui.add(tableDiv, "manual");
-
-      new FeatureTable({
-        layer: event.target.selectedFeature.layer,
-        fieldConfigs: [
-          { name: "ID" },
-          { name: "RG_NAME" },
-          { name: "COUNTY_NAME" },
-          { name: "TOTPOP_CY" }
-        ],
-        container: tableDiv
-      });
+  const view = new MapView({
+    container: "viewDiv",
+    center: [-73.98, 40.75],
+    zoom: 12,
+    map: map,
+    popup: {
+      dockEnabled: true,
+      dockOptions: { position: "bottom-left", breakpoint: false }
     }
   });
+
+  const legend = new Legend({
+    view: view
+  });
+  view.ui.add(legend, "top-right");
+
+  const customAction = {
+    title: "Table",
+    id: "table-action",
+    className: "esri-icon-table"
+  };
+  view.popup.actions.push(customAction);
+
+  // Event handler that fires each time an action is clicked.
+  view.popup.on("trigger-action", function(event) {
+    if (event.action.id === "table-action") {
+      openTable(event);
+      view.popup.close();
+    }
+  });
+
+  function openTable(event) {
+    const tableDiv = document.createElement("div");
+    view.ui.add(tableDiv, "manual");
+
+    const layer = event.target.selectedFeature.layer;
+
+    new FeatureTable({
+      layer,
+      fieldConfigs: [
+        { name: "ID" },
+        { name: "RG_NAME" },
+        { name: "COUNTY_NAME" },
+        { name: "TOTPOP_CY" }
+      ],
+      container: tableDiv
+    });
+  }
 }); // Less than 60 lines of JS!!
