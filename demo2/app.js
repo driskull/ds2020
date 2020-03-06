@@ -19,6 +19,9 @@ require([
         center: [-73.98, 40.75],
         zoom: 11,
         map: map,
+        padding: {
+          right: 350
+        },
         popup: {
           dockEnabled: true,
           dockOptions: { position: "bottom-left", breakpoint: false }
@@ -52,13 +55,6 @@ require([
           container: tableDiv
         });
       }
-
-      view.popup.watch("selectedFeature", function(selectedFeature) {
-        if (table && selectedFeature) {
-          table.destroy();
-          table = null;
-        }
-      });
 
       scroller = document.querySelector(".scroller");
       content = scroller.querySelector(".content");
