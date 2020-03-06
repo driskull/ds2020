@@ -2,15 +2,15 @@
 
 - Thanks Euen
 - The ArcGIS JavaScript API provides ready to use widgets, to help you build great apps without writing a lot of code.
-- I'd like to show how you can build an impactful app, using only a few.
+- I'd like to show how you can build an impactful app with a few of them
 - Heres the reference page Popup
   - Popup is automatically setup on a view and gives you info about a feature
   - Just like all widgets, easy to customize via settings
-  - By default, a zoom to action is on the Popup, but as a developer I can add custom actions
-- Lets look at an example app
+  - By default, a zoom to action is on the Popup, but as a developer I can add custom actions alongside
+- Lets look at an example app i've created
   - Here's a webmap of the New York area containing 10 layers
   - each layer shows info about home values in a defined price range
-  - I've also added a Legend in the top right to display symbology for the layers
+  - I've added a Legend in the top right to display symbology for the layers
   - [CLICK FEATURE]: get information about it
   - Zoom to it using the default action
   - Here I added custom action to open a data table
@@ -20,6 +20,7 @@
     - Sort data using column headers
   - You can try out the FeatureTable right now using the /NEXT version JEREMY mentioned
 - Lets see source for this demo
+- So this app was created using less than 60 lines of JS code
 - since last DS, we've also added a Swipe widget
   - Here's a SDK sample using Swipe.
   - By swiping, layers are partially displayed which is great for comparing data.
@@ -31,7 +32,7 @@
   - We've made the view and styles open source on GitHub
   - So you can theme widgets, tweak a widget's design or add functionality
 - Additional benefits of these widgets
-  - Internationalized in 30+ languages
+  - Internationalized in nearly 40 languages
   - and Developed to be to keyboard & screen-reader accessible
 - We hope these widgets will make it easier to create awesome apps!
 - Euen

@@ -27,3 +27,8 @@
 - go slowly with swipe. don't go fast.
 - have setup script
 - email euen screenshots of demos. CC Amy
+
+## Third Run
+
+- Remember to say 60 lines of code
+- Nearly 40 languages
