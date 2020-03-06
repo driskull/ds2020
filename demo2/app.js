@@ -37,7 +37,6 @@ require([
 
       // Event handler that fires each time an action is clicked.
       view.popup.on("trigger-action", function(event) {
-        // Execute the openTable() function if the 'table-action' action is clicked
         if (event.action.id === "table-action") {
           openTable(event);
           view.popup.close();
@@ -45,13 +44,17 @@ require([
       });
 
       function openTable(event) {
-        const layer = event.target.selectedFeature.layer;
-
         const tableDiv = document.createElement("div");
         view.ui.add(tableDiv, "manual");
 
-        const table = new FeatureTable({
-          layer: layer,
+        new FeatureTable({
+          layer: event.target.selectedFeature.layer,
+          fieldConfigs: [
+            { name: "ID" },
+            { name: "RG_NAME" },
+            { name: "COUNTY_NAME" },
+            { name: "TOTPOP_CY" }
+          ],
           container: tableDiv
         });
       }
