@@ -5,7 +5,7 @@ require([
   "esri/widgets/FeatureTable",
   "esri/widgets/Swipe"
 ], function(WebMap, MapView, Legend, FeatureTable, Swipe) {
-  let view, table, swipes, scroller, content;
+  let view, swipes, scroller, content;
 
   const map = new WebMap({
     portalItem: { id: "f5a89635bb394f7da2f9c82cdd73e459" }
@@ -50,7 +50,7 @@ require([
         const tableDiv = document.createElement("div");
         view.ui.add(tableDiv, "manual");
 
-        table = new FeatureTable({
+        const table = new FeatureTable({
           layer: layer,
           container: tableDiv
         });

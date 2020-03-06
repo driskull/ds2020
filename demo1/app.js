@@ -4,14 +4,13 @@ require([
   "esri/widgets/Legend",
   "esri/widgets/FeatureTable"
 ], function(WebMap, MapView, Legend, FeatureTable) {
-  let view, table;
 
   const map = new WebMap({
     portalItem: { id: "f5a89635bb394f7da2f9c82cdd73e459" }
   });
 
   map.load().then(function() {
-    view = new MapView({
+    const view = new MapView({
       container: "viewDiv",
       center: [-73.98, 40.75],
       zoom: 11,
@@ -49,7 +48,7 @@ require([
       const tableDiv = document.createElement("div");
       view.ui.add(tableDiv, "manual");
 
-      table = new FeatureTable({
+      const table = new FeatureTable({
         layer: layer,
         container: tableDiv
       });
