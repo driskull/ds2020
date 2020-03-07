@@ -4,18 +4,18 @@
 - The ArcGIS JavaScript API provides ready to use widgets, to help you build great apps without writing a lot of code.
 - I'd like to show how you can build an impactful app using a few of them
 - Heres the reference page Popup
-  - Popup is automatically setup on a view and gives you info about a feature
+  - Popup gives you info about a feature, is automatically setup on a view
   - Just like all widgets, easy to customize via settings
-  - By default, a zoom to action is on the Popup, but as a developer I can add custom actions alongside
+  - By default, a zoom to action is on the Popup, but as a developer I can add custom actions alongside it
 - Lets look at an example app i've created
   - Here's a webmap of the New York area containing 10 layers
   - each layer shows info about home values in a defined price range
-  - I've added a Legend in the top right to display symbology for the layers
-  - [CLICK FEATURE]: get information about it
+  - I've added a Legend in the top right to display symbology for each layer
+  - [CLICK FEATURE]: get popup information about it
   - Zoom to it using the default action
-  - Here I added custom action to open a data table
+  - Here I added custom action to open a data table for features layer
   - Next release of JSAPI: adding FeatureTable widget
-    - FeatureTable view rows of attributes for features in a layer
+    - FeatureTable lets u view rows of attributes for features in a layer
     - As I scroll table, data loaded dynamically
     - Sort data using column headers
   - You can try out the FeatureTable right now using the /NEXT version JEREMY mentioned
@@ -23,11 +23,11 @@
 - since last DS, we've also added a Swipe widget
   - Here's a SDK sample using Swipe.
   - By swiping, layers are partially displayed which is great for comparing data.
-- Building on demo I showed, I've added a multiple Swipe setup.
+- Building on demo I showed, I've added multiple Swipes
   - Each layer now has it's own swipe, that moves as the page is scrolled.
   - As I move up and down, I can compare layers and see patterns
 - JSAPI widgets are also highly customizable
-  - They use the view viewModel pattern so that logic and presentation are kept separated.
+  - They use a view viewModel pattern so that logic and presentation are kept separated.
   - We've made the view and styles open source on GitHub
   - So you can theme widgets, tweak a widget's design or add functionality
 - Additional benefits of these widgets
