@@ -4,6 +4,7 @@ require([
   "esri/widgets/Legend",
   "esri/widgets/FeatureTable"
 ], function(WebMap, MapView, Legend, FeatureTable) {
+
   const map = new WebMap({
     portalItem: { id: "f5a89635bb394f7da2f9c82cdd73e459" }
   });
