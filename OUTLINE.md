@@ -1,7 +1,7 @@
-# Outline
+# Outline - Shift Shift O and hit enter on name
 
 - Thanks Euen
-- The ArcGIS JSAPI provides ready to use widgets, to help you build great apps without writing a lot of code
+- The ArcGIS JSAPI provides ready to use widgets, to help you build great apps with less code
 - I'd like to show how you can build an impactful app using a few of them
 - Heres the reference page for Popup
   - Popup gives you info about a feature, is automatically setup on a view
@@ -21,7 +21,7 @@
   - You can try out the FeatureTable right now using the [/NEXT] release JEREMY mentioned a few minutes ago
 - Lets see source for this demo
 - since last DS, we've also added a Swipe widget
-  - Here's a SDK sample using Swipe.
+  - Here's an SDK sample using Swipe.
   - By swiping, layers are partially displayed which is great for comparing data.
 - Building on demo I just showed
   - I've added multiple Swipes to it
