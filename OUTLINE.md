@@ -1,8 +1,8 @@
 # Outline - Shift Shift O and hit enter on name
 
 - Thanks Euen
-- The ArcGIS JSAPI provides ready to use widgets, to help you build great apps with less code
-- I'd like to show how you can build an impactful app using a few of them
+- The ArcGIS API For JS provides ready to use widgets, to help you build great apps with less code
+- I'd like to show how you can build an impactful app using only a few of them
 - Heres the reference page for Popup
   - Popup gives you info about a feature, is automatically setup on a view
   - Just like all widgets, easy to customize through settings
@@ -11,9 +11,9 @@
   - Here's a webmap of the New York area containing 10 layers
   - each layer shows info about home values in a defined price range
   - I've added a Legend in the top right to display symbology for each layer
-  - [CLICK FEATURE]: get popup info about it
-  - Zoom-to it using the default action
-  - Here I've added custom action to open a data-table
+  - [CLICK FEATURE]: see popup info about it
+  - I can zoom in closer, using the zoom-to action
+  - I've also added a custom action to open a data-table
   - Next release of JSAPI: adding FeatureTable widget
     - FeatureTable lets u view rows of attributes, for features in a layer
     - As I scroll the table, data loaded dynamically
@@ -24,7 +24,7 @@
   - Here's an SDK sample using Swipe.
   - By swiping, layers are partially displayed which is great for comparing data.
 - Building on demo I just showed
-  - I've added multiple Swipes to it
+  - I've enhanced it by added multiple Swipes to it
   - Each layer now has it's own swipe, that moves as the page is scrolled.
   - As I move up and down, I can compare layers and see patterns
 - JSAPI widgets are also highly customizable
@@ -32,8 +32,7 @@
   - We've made the view and styles open source on GitHub
   - So you can tweak a widget's design or add functionality
 - Additional benefits of these widgets
-  - Easily themable using tooling on Github
   - Internationalized in nearly 40 languages
   - and Developed to be to keyboard & screen-reader accessible
-- We hope these widgets will make it easier to create awesome apps!
-- Euen
+- We hope these widgets will make it easier for you to create awesome apps!
+- Back to you Euen
