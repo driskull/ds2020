@@ -61,6 +61,10 @@ body,
   width: 100%;
 }
 
+.esri-legend__layer-caption {
+  display: none;
+}
+
 .content h2 {
   box-sizing: border-box;
   width: 100%;

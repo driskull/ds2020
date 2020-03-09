@@ -17,3 +17,7 @@ body,
   bottom: 0;
   height: 35%;
 }
+
+.esri-legend__layer-caption {
+  display: none;
+}
