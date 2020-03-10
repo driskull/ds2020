@@ -1,13 +1,10 @@
-# Outline - Shift Shift O and hit enter on name
-
-- Thanks Euen
 - The ArcGIS API For JS provides ready to use widgets, to help you build great apps with less code
-- I'd like to show how you can build an impactful app using only a few of them
-- Heres the reference page for Popup
+- I'd like to show how you can build an impactful app using just a few of them
+- **Heres the reference page for Popup**
   - Popup gives you info about a feature, is automatically setup on a view
-  - Just like all widgets, easy to customize through settings
-  - By default, a zoom-to action is available, but as a developer I can add custom actions next to it
-- Lets look at an example app i've created
+  - Just like all widgets, easy to customize by setting props
+  - By default, a zoom-to action is there, but as a developer I can add custom actions next to it
+- **Lets look at an example app i've created**
   - Here's a webmap of the New York area containing 10 layers
   - each layer shows info about home values in a defined price range
   - I've added a Legend in the top right to display symbology for each layer
@@ -16,23 +13,23 @@
   - I've also added a custom action to open a data-table
   - Next release of JSAPI: adding FeatureTable widget
     - FeatureTable lets u view rows of attributes, for features in a layer
-    - As I scroll the table, data loaded dynamically
+    - As I scroll the table, additional data loaded dynamically
     - I can also sort data using a column header
-  - You can try out the FeatureTable right now using the [/NEXT] release JEREMY mentioned a few minutes ago
-- Lets see source for this demo
-- since last DS, we've also added a Swipe widget
+  - You can try out the FeatureTable right now using the /NEXT] release JEREMY mentioned a few minutes ago
+- **Lets see source for this demo**
+- **since last DS, we've also added a Swipe widget**
   - Here's an SDK sample using Swipe.
   - By swiping, layers are partially displayed which is great for comparing data.
-- Building on demo I just showed
-  - I've enhanced it by added multiple Swipes to it
+- **Building on demo I just showed**
+  - I've enhanced and added multiple Swipes
   - Each layer now has it's own swipe, that moves as the page is scrolled.
   - As I move up and down, I can compare layers and see patterns
-- JSAPI widgets are also highly customizable
-  - By using a view viewModel pattern, logic and presentation are separated.
-  - We've made the view and styles open source on GitHub
-  - So you can tweak a widget's design or add functionality
-- Additional benefits of these widgets
+- **JSAPI widgets are also highly customizable**
+  - They use a view viewModel pattern, so logic is separated from presentation.
+  - We've made the view and its styles open source on GitHub
+  - So you can tweak a widget's design, or add functionality
+- **Additional benefits of these widgets**
   - Internationalized in nearly 40 languages
   - and Developed to be to keyboard & screen-reader accessible
 - We hope these widgets will make it easier for you to create awesome apps!
-- Back to you Euen
+- Euen
